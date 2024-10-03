@@ -1,4 +1,4 @@
-# RhinoLab
+# MyRhinoLab
 
 RhinoLab 是一个专为我整个科研过程中数据预处理和后处理设计的 MATLAB 仓库，提供了一系列工具和函数，辅助我简化数据分析流程。
 
@@ -39,4 +39,4 @@ RhinoLab 是一个专为我整个科研过程中数据预处理和后处理设�
 
 ## 联系方式
 
-如有问题或需要支持，请联系 [pengweixd@.com](mailto:pengweixd@.com)。
+如有问题或需要支持，请联系 [pengweixd@163.com](mailto:pengweixd@163.com)。

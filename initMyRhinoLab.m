@@ -23,6 +23,7 @@ addpath(fullfile(baseDir, 'scripts', 'p23-GNSNi-AGG-2024', 'simulations'));
 addpath(fullfile(baseDir, 'scripts', 'p23-GNSNi-AGG-2024', 'experiments'));
 addpath(fullfile(baseDir, 'scripts', 'p22-Ti-withOrWithout-twins-2024', 'simulations'));
 addpath(fullfile(baseDir, 'scripts', 'p22-Ti-withOrWithout-twins-2024', 'experiments'));
+addpath(fullfile(baseDir, 'scripts', 'others', 'zhouweitong'));
 
 % Display a message confirming initialization is complete
 disp('RhinoLab environment initialized.');

@@ -6,4 +6,7 @@
 *.cpr
 *.crc
 *.zip
-*.e
+*.tgz
+*.e.*
+*.e-s*
+*.RAR
