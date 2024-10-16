@@ -21,6 +21,7 @@ addpath(fullfile(baseDir, 'src', 'mtex'));
 % 
 addpath(fullfile(baseDir, 'scripts', 'p23-GNSNi-AGG-2024', 'simulations'));
 addpath(fullfile(baseDir, 'scripts', 'p23-GNSNi-AGG-2024', 'experiments'));
+addpath(fullfile(baseDir, 'scripts', 'p23-GNSNi-AGG-2024', 'experiments-2'));
 addpath(fullfile(baseDir, 'scripts', 'p22-Ti-withOrWithout-twins-2024', 'simulations'));
 addpath(fullfile(baseDir, 'scripts', 'p22-Ti-withOrWithout-twins-2024', 'experiments'));
 addpath(fullfile(baseDir, 'scripts', 'others', 'zhouweitong'));
