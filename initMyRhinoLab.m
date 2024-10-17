@@ -10,21 +10,8 @@ close all;
 run('..\mtex-5.8.1\startup_mtex.m')
 
 % Define the base directory for the repository
-baseDir = fileparts(mfilename('fullpath'));  % Gets the directory of the current script
-
-% Add necessary paths for src
-addpath(fullfile(baseDir, 'src', 'postprocessing'));
-addpath(fullfile(baseDir, 'src', 'io'));
-addpath(fullfile(baseDir, 'src', 'figures'));
-addpath(fullfile(baseDir, 'src', 'mtex'));
-
-% 
-addpath(fullfile(baseDir, 'scripts', 'p23-GNSNi-AGG-2024', 'simulations'));
-addpath(fullfile(baseDir, 'scripts', 'p23-GNSNi-AGG-2024', 'experiments'));
-addpath(fullfile(baseDir, 'scripts', 'p23-GNSNi-AGG-2024', 'experiments-2'));
-addpath(fullfile(baseDir, 'scripts', 'p22-Ti-withOrWithout-twins-2024', 'simulations'));
-addpath(fullfile(baseDir, 'scripts', 'p22-Ti-withOrWithout-twins-2024', 'experiments'));
-addpath(fullfile(baseDir, 'scripts', 'others', 'zhouweitong'));
+baseDir = fileparts(mfilename('fullpath'));  % Gets the directory of
+addpath(genpath(baseDir));
 
 % Display a message confirming initialization is complete
 disp('RhinoLab environment initialized.');
