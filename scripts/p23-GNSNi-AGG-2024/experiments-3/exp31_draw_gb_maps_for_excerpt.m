@@ -25,23 +25,42 @@ setMTEXpref('zAxisDirection','inOfPlane');
 %% File paths and time points
 inputDataPath = '.\data\p23_GNS_AGG_106_20241026\ctf_excerpt_14mins\';
 
-for iTime = 3:3 % length(timePoints)
+for iTime = 4:4 % length(timePoints)
     % Generate the full file path for each time point
-    inputFile = fullfile(inputDataPath, sprintf('GNSNi_14min_local%d_excerpt_20241026.ctf', iTime));
+    inputFile = fullfile(inputDataPath, sprintf('GNSNi_14min_local%d-2_excerpt_20241026.ctf', iTime));
     
     %% Load EBSD data from the specified file
     ebsdData = EBSD.load(inputFile, crystalSymmetry, 'interface', 'ctf', ...
                          'convertEuler2SpatialReferenceFrame');
 
-    % Initial grain calculation
-    [grains, ebsdData.grainId, ebsdData.mis2mean] = calcGrains(ebsdData, 'threshold', 2 * degree);
-    grains = smooth(grains, 10);
+    % [xmin, xmax, ymin, ymax] = ebsdData.extend;
+    % ebsdData = ebsdData(inpolygon(ebsdData, [xmin, ymin, xmax-xmin, 164]));
+
+    % plot(ebsdData, ebsdData.orientations)
+    % Transform the mesh to increase resolution
+    ebsdDataMesh = transformMesh(ebsdData, 4.0);
+
+    % Iterate through different smoothing parameters
+    alphaValues = [0.0, 1.0];
+    for iFill = 1:length(alphaValues)
+      [grainsDataMesh, ebsdDataMesh] = identifyAndSmoothGrains(ebsdDataMesh, 2.0 * degree, 60, 3.0);
+      F = halfQuadraticFilter;
+      F.alpha = alphaValues(iFill);
+      ebsdDataMesh = smooth(ebsdDataMesh, F, 'fill', grainsDataMesh);
+      ebsdDataMesh = ebsdDataMesh('indexed');
+    end
+
+    % Final identification and smoothing of grains
+    [grainsDataMesh, ebsdDataMesh] = identifyAndSmoothGrains(ebsdDataMesh, 2.0 * degree, 60, 3.0);
+
+    % Plot the second IPF map after further processing
+    plotIPFMap(1, ebsdDataMesh, grainsDataMesh);
 
    % Define misorientation threshold for grain boundaries
    deltaMisor = 5 * degree;
 
    % Identify different types of grain boundaries
-   gB = grains.boundary('Ni-superalloy', 'Ni-superalloy');  % All boundaries
+   gB = grainsDataMesh.boundary('Ni-superalloy', 'Ni-superalloy');  % All boundaries
    lAGB = gB(angle(gB.misorientation) < 15.0 * degree);     % Low-angle GBs (< 15°)
    hAGB = gB(angle(gB.misorientation) >= 15.0 * degree);    % High-angle GBs (≥ 15°)
    
