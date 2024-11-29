@@ -18,10 +18,10 @@ fontSizeLabelTitle = 18;
 colors = {'#0085c3', '#14d4f4', '#f2af00', '#b7295a', '#00205b', '#009f4d', '#84bd00', '#efdf00', '#e4002b', '#a51890'};
 
 %% File paths and time points
-inputDataPath = 'G:\Github\MyRhinoLabData\p23_GNSNi_AGG_2024\ebsd\b1_GNSNi_EX_EBSD_14min_106_20241026\csv2_stages_14mins\';
+inputDataPath = 'H:\Github\MyRhinoLabData\p23_GNSNi_AGG_2024\ebsd\b1_GNSNi_EX_EBSD_14min_106_20241026\csv2_stages_14mins\';
 
 % Loop over each time point to load and plot the corresponding EBSD data
-for iStage = 1:4 % 2:length(yCoordinatesBox)
+for iStage = 4:4
   % Generate the full file path for each time point
   localId = getLocalIds(iStage);    
   [m, ~] = size(localId);
@@ -37,6 +37,8 @@ for iStage = 1:4 % 2:length(yCoordinatesBox)
     [tempGrainSizeDistribution, edges] = createGrainSizeDistribution(31, 3.0); % 2.5 for stage 1; 2-
     [tempGrainSizeDistribution.numFraction, tempGrainSizeDistribution.areaFraction, aveGrainRadius, bigGrainIDs] = getGrainSizeDistribution(grainArea, edges, grainID);
 
+    grainRadius = sqrt(grainArea / pi);
+    bigGrainIDs = grainID(grainRadius > 8.91*2);
     formattedMessage = sprintf('big grain id in %d and %d:', localId(jLocal, 1), localId(jLocal, 2));
     disp(formattedMessage);
     disp(bigGrainIDs')
@@ -76,18 +78,19 @@ for iStage = 1:4 % 2:length(yCoordinatesBox)
   end
 end
 
-function local_ids = getLocalIds(iStage)
+function local_ids = getLocalIds(iStage) % depend on the grain size 
   switch iStage
       case 1
-        local_ids = [1,2; 1,5; 2,3; 3,1; 3,3; 4,1; 5,1; 5,3; 6,3; 7,1;];
+        local_ids = [1,5; 2,1; 2,3; 3,1; 3,3; 4,1; 5,1; 5,3; 6,3; 7,1;];
       case 2
-        local_ids = [1,4; 2,1; 2,2; 4,2; 7,2;];
+        local_ids = [1,2; 1,4; 2,2; 7,2];
       case 3
-        local_ids = [1,1; 1,3; 2,4; 3,2; 5,2; 6,1; 7,3; 8,1];
+        local_ids = [1,1; 1,3; 2,4; 4,2; 7,3; 7,4];
       case 4
-        local_ids = [6,2; 7,4;];
+        local_ids = [3,2; 5,2; 6,1; 6,2; 8,1];
   end
 end
+
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% add GB type maps
 % deltaMisor = 5 * degree;
