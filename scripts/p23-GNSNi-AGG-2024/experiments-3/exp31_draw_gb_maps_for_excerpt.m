@@ -33,10 +33,6 @@ for iTime = 4:4 % length(timePoints)
     ebsdData = EBSD.load(inputFile, crystalSymmetry, 'interface', 'ctf', ...
                          'convertEuler2SpatialReferenceFrame');
 
-    % [xmin, xmax, ymin, ymax] = ebsdData.extend;
-    % ebsdData = ebsdData(inpolygon(ebsdData, [xmin, ymin, xmax-xmin, 164]));
-
-    % plot(ebsdData, ebsdData.orientations)
     % Transform the mesh to increase resolution
     ebsdDataMesh = transformMesh(ebsdData, 4.0);
 
