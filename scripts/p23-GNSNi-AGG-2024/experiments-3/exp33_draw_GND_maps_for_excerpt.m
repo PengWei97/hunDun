@@ -26,9 +26,9 @@ outputDataPath = '.\data\p23_GNS_AGG_106_20241026\fig_excerpt_14mins_GNDMap\'; %
 
 rho_lim = zeros(7, 2); % Initialize KAM limits
 
-for iTime = 3:3 % length(timePoints)
+for iTime = 4:4 % length(timePoints)
     % Generate the full file path for each time point
-    inputFile = fullfile(inputDataPath, sprintf('GNSNi_14min_local%d_excerpt_20241026.ctf', iTime));
+    inputFile = fullfile(inputDataPath, sprintf('GNSNi_14min_local%d-2_excerpt_20241026.ctf', iTime));
     
     %% Load EBSD data from the specified file
     ebsdData = EBSD.load(inputFile, crystalSymmetry, 'interface', 'ctf', ...

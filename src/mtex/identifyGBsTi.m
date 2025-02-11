@@ -24,8 +24,8 @@ function [twinBoundary1, twinBoundary2, twinBoundary3, twinBoundary4, LowAngleGB
   % Define twinning orientations
   twinning1 = orientation.byAxisAngle(Miller({1 1 -2 0}, ebsd.CS), 85 * degree); % tensile twin
   twinning2 = orientation.byAxisAngle(Miller({1 0 -1 0}, ebsd.CS), 65 * degree); % compression twin
-  twinning3 = orientation.byAxisAngle(Miller({1 0 -1 0},ebsd.CS),35.10*degree); % tensile twin - v2
-  twinning4 = orientation.byAxisAngle(Miller({1 1 -2 0},ebsd.CS),57.05*degree); % compression twin - v2
+  twinning3 = orientation.byAxisAngle(Miller({1 0 -1 0},ebsd.CS), 35.10*degree); % tensile twin - v2
+  twinning4 = orientation.byAxisAngle(Miller({1 1 -2 0},ebsd.CS), 57.05*degree); % compression twin - v2
   twinning = [twinning1, twinning2, twinning3, twinning4];
   
   % Define tolerance for misorientation

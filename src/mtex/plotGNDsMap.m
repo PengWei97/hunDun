@@ -23,7 +23,11 @@ function plotGNDsMap(index, ebsd, grains, rho)
   plot(ebsd, rho, 'coordinates', 'off', 'micronbar', 'off');
   mtexColorMap('jet');
   set(gca, 'ColorScale', 'log');
-  mtexColorbar('title', 'Dislocation Density (1/m^2)');
+  set(gca, 'CLim', [2.0e+12, 2.0e+16]);
+  % if index == 1
+  %   mtexColorbar('title', 'Dislocation Density (1/m^2)');
+  % end
+  
   hold on;
   
   % Plot the grain boundaries with specified line width
