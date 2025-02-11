@@ -21,7 +21,7 @@ function [grains, ebsd] = identifyAndSmoothGrains(ebsd, threshold, smoothFactor,
   fprintf('Running identifyAndSmoothGrains\n');
 
   % Initial grain calculation
-  [grains, ebsd.grainId, ebsd.mis2mean] = calcGrains(ebsd, 'threshold', threshold);
+  [grains, ebsd.grainId, ebsd.mis2mean] = calcGrains(ebsd, 'threshold',threshold, 'alpha',0.0, 'minPixel',5);
 
   % Smooth the grains
   grains = smooth(grains, smoothFactor);
